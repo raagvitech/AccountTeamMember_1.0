@@ -1,0 +1,87 @@
+<template >
+    <lightning-card>
+        <template if:true ={getIsModelOpen}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+            class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <div>
+                    <lightning-icon class ="cancelIcon slds-float_right slds-m-bottom_small" icon-name="utility:close" size="medium" alternative-text="Indicates close" onclick={closeModelHandller}>
+                    </lightning-icon>
+                </div>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Add account team members</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-spinner if:true={isSpinner} variant="brand" size="large"> </lightning-spinner>
+                    <lightning-layout>
+                        <lightning-layout-item size="12">
+                            <table
+                                class="slds-table slds-table_cell-buffer slds-table_bordered slds-border_left slds-border_right"
+                                aria-labelledby="element-with-table-label other-element-with-table-label">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Team Role</th>
+                                        <th>Account Access</th>
+                                        <th>Case Access</th>
+                                        <th>Opportunity Access</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={filterList} for:item="filterData" for:index="index">
+                                        <tr key={filterData}>
+                                            <td>
+                                                <lightning-combobox name="userName" data-index={index}
+                                                    variant="label-hidden" placeholder="" onchange={handleChange}
+                                                    value={filterData.UserId} options={userOptions} required>
+                                                </lightning-combobox>
+                                            </td>
+                                            <td>
+                                                <lightning-combobox name="teamRole" data-index={index}
+                                                    variant="label-hidden" placeholder="" onchange={handleChange}
+                                                    value={filterData.TeamMemberRole} options={teamRoleOptions} required>
+                                                </lightning-combobox>
+                                            </td>
+                                            <td>
+                                                <lightning-combobox name="accountAccess" data-index={index}
+                                                    variant="label-hidden" placeholder="" onchange={handleChange}
+                                                    value={filterData.AccountAccessLevel} options={allAccess} required>
+                                                </lightning-combobox>
+                                            </td>
+                                            <td>
+                                                <lightning-combobox name="caseAccess" data-index={index}
+                                                    variant="label-hidden" placeholder="" onchange={handleChange}
+                                                    value={filterData.CaseAccessLevel} options={allAccess} required>
+                                                </lightning-combobox>
+                                            </td>
+                                            <td>
+                                                <lightning-combobox name="oppAccess" data-index={index}
+                                                    variant="label-hidden" placeholder="" onchange={handleChange}
+                                                    value={filterData.OpportunityAccessLevel} options={allAccess} required>
+                                                </lightning-combobox>
+                                            </td>
+                                            <td>
+                                                <lightning-button-icon data-index={filterData.id}
+                                                    class="slds-float--right" icon-name="action:new"
+                                                    onclick={handleAddRow}></lightning-button-icon>
+                                                <lightning-button-icon data-index={filterData.id}
+                                                    class="slds-float--right" icon-name="action:delete"
+                                                    onclick={handleRemoveRow}></lightning-button-icon>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={closeModelHandller}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick ={saveRows}>Save</button>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+    </lightning-card>
+</template>

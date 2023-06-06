@@ -1,0 +1,92 @@
+<template>
+    <lightning-button variant="Brand" label="Send Whatsapp meaasage" title="Click to Select members for delete multiple"
+        onclick={hadleSendWhatsapp} class="slds-m-left_x-small"></lightning-button>
+    <lightning-card title="Account Team Members" icon-name="standard:account">
+        <div class=" slds-float_right slds-p-around_x-large">
+            <lightning-button variant="brand" label="Add Default Team" title="Click for add default team to List"
+                onclick={handleDefaultTeam} class="slds-m-left_x-small"></lightning-button>
+            <template if:true={data.length}>
+                <lightning-button variant={buttonVariant} label={deleteMultipleLabel}
+                    title="Click to Select members for delete multiple" onclick={handleDeleteMutlipleTeam}
+                    class="slds-m-left_x-small"></lightning-button>
+            </template>
+        </div>
+        <div class="contener">
+            <b>Total Account Team Members : {data.length}</b>
+            <div class="slds-grid slds-gutters slds-p-bottom_medium">
+                <div class="colcontener slds-col slds-size_11-of-12">
+                    <template for:each={data} for:item="item">
+                        <div key={item.Id} class="memberCard">
+                            <div class="detailes">
+                                <div class="img-wrap">
+                                    <template if:true={isDeleteSecelect}>
+                                        <lightning-input class="slds-p-left_x-large checkBox" data-id={item.Id}
+                                            type="checkbox" onchange={handleCheckBoxChange}></lightning-input>
+                                    </template>
+                                    <i class="fa-solid fa-trash-can fa-bounce deleteUser" data-id={item.Id}
+                                        onclick={handleContactDelete} alternative-text="Delete" title="Delete User"
+                                        style="color: #fb0915"></i>
+                                    <img src={item.User.FullPhotoUrl} class="slds-align_absolute-center carImage"
+                                        name={item} alt="Car picture" onload={imageHanddler} />
+                                </div>
+                                <div class="userdetailes">
+                                    <p class="title">
+                                        {item.User.Name}
+                                        <lightning-icon class="iconEdit slds-p-left_x-small" data-memberid={item.Id}
+                                            size="xx-small" icon-name="utility:edit" alternative-text="Edit"
+                                            title="Edit User" onclick={clickEdit}></lightning-icon>
+                                    </p>
+                                    <p class="Role">{item.TeamMemberRole}</p>
+                                    <ul>
+                                        <li>
+                                            <a class="fa-brands fa-whatsapp" style="color: #10f937"
+                                                href="https://wa.me/9182820978" target="_blank"
+                                                rel="noopener noreferrer"></a>
+                                        </li>
+                                        <li>
+                                            <a class="fa-brands fa-square-facebook" style="color: #1549a2"
+                                                href="https://www.facebook.com/jadaladev.jadaladevendar" target="_blank"
+                                                rel="noopener noreferrer"></a>
+                                        </li>
+                                        <li>
+                                            <a class="fa-brands fa-youtube" style="color: #f00505"
+                                                href="https://www.youtube.com/channel/UClbFPuFYH7LjVxlx9EU3sww"
+                                                target="_blank" rel="noopener noreferrer"></a>
+                                        </li>
+                                        <li>
+                                            <a class="fa-brands fa-twitter" style="color: #3d81f5"
+                                                href="https://twitter.com/DevenderJadala" target="_blank"
+                                                rel="noopener noreferrer"></a>
+                                        </li>
+                                        <li>
+                                            <a class="fa-brands fa-square-instagram insta"
+                                                href="https://www.instagram.com/devender_yadav_jadala" target="_blank"
+                                                rel="noopener noreferrer"></a>
+                                        </li>
+                                        <li>
+                                            <a class="fa-brands fa-linkedin" style="color: #0444b4"
+                                                href="https://www.linkedin.com/in/jadala-devender-277691199/"
+                                                target="_blank" rel="noopener noreferrer"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div class="slds-align_absolute-center userIcon slds-col slds-size_1-of-12">
+                    <lightning-icon icon-name="utility:adduser" alternative-text="Add New User" title="Add New Member"
+                        onclick={handleCreateMember}></lightning-icon>
+                </div>
+            </div>
+        </div>
+        <template if:true={isModelOpen}>
+            <c-add-account-team acc-record-id={recordId} onclose={modalCloseHandler}
+                get-is-model-open={isModelOpen}></c-add-account-team>
+        </template>
+        <template if:true={isEditModelOpen}>
+            <c-user-member-edit member={selectedObj2} onclose={modalCloseHandler}
+                get-is-model-open={isEditModelOpen}></c-user-member-edit>
+        </template>
+    </lightning-card>
+</template>

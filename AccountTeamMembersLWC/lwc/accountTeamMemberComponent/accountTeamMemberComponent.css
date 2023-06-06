@@ -1,0 +1,121 @@
+.colcontener {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contener {
+    background-color: black;
+    padding-top: 96px;
+    margin: 0px;
+}
+
+.userdetailes {
+    background-color: rgb(196 228 223);
+    height: 146px;
+    padding-top: 56px;
+    width: 123px;
+    padding-left: 20px;
+    font-size: 10px;
+}
+
+.detailes {
+    position: relative;
+    flex: 1;
+    padding-top: 100px;
+    width: 128px;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.about {
+    max-width: 122px;
+    max-height: 229px;
+    font-size: 10px;
+    font-style: italic;
+    padding: 10px 10px 20px 10px;
+}
+
+img {
+    max-height: 132px;
+    max-width: 90px;
+    height: 123px;
+    padding-bottom: -9px;
+    width: 104px;
+    position: absolute;
+    border: 2px solid rgb(92, 92, 218);
+    left: 17px;
+    top: 25px;
+}
+
+.iconEdit {
+    --sds-c-icon-color-foreground-default: blue;
+    cursor: pointer;
+}
+
+.favorite {
+    position: absolute;
+}
+
+
+.userIcon {
+    cursor: pointer;
+    padding-right: 100px;
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    font-size: 11px;
+    padding-top: 13px;
+}
+
+li {
+    float: left;
+    padding: 3px;
+}
+
+.insta {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.deleteUser {
+    position: absolute;
+    top: 34px;
+    right: 26px;
+    z-index: 10;
+    cursor: pointer;
+    opacity: 0;
+
+}
+
+.checkBox {
+    position: absolute;
+    top: 23px;
+    right: 77px;
+    z-index: 1;
+}
+
+
+.memberCard:hover .deleteUser {
+    opacity: 1;
+}
+
+.memberCard:hover {
+
+    transform: scaleY(1.1);
+}
+
+b {
+    color: white;
+    padding-left: 10px;
+}

@@ -1,0 +1,12 @@
+.imageUpload {
+    padding-left: 50px;
+}
+
+img {
+    height: 104px;
+}
+
+.cancelIcon {
+    background-color: white;
+    cursor: pointer;
+}

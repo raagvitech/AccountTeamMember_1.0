@@ -1,0 +1,69 @@
+<template>
+    <template if:true={getIsModelOpen}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+            class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <div>
+                    <lightning-icon class="cancelIcon slds-float_right slds-m-bottom_small" icon-name="utility:close"
+                        size="medium" alternative-text="Indicates close" onclick={closeModelHandller}>
+                    </lightning-icon>
+                </div>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Edit account team members</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="imageUpload">
+                        <img src={member.User.FullPhotoUrl} class=" carImage" alt="Car picture" />
+                        <p>{imageName}</p>
+                        <lightning-file-upload name="fileUploader" accept={acceptedFormats} record-id={recordId}
+                            onuploadfinished={handleUploadFinished}>
+                        </lightning-file-upload>
+                    </div>
+                    <div class="slds-p-around_large ">
+                        <lightning-record-edit-form record-id={member.Id} object-api-name={accountTeamObjectApi}>
+                            <lightning-messages>
+                            </lightning-messages>
+                            <div class="slds-col slds-size_12-of-12 slds-p-horizontal_medium model">
+                                <div class="slds-grid slds-wrap slds-p-around--medium"
+                                    style="background:white; border:1px white solid;">
+                                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                                        <lightning-output-field field-name="AccountId"></lightning-output-field>
+                                    </div>
+                                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                                        <lightning-output-field field-name="UserId"></lightning-output-field>
+                                    </div>
+                                </div>
+
+                                <div class="slds-grid slds-wrap slds-p-around--medium"
+                                    style="background:#eee; border:1px #ddd solid;">
+                                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                                        <lightning-input-field field-name="TeamMemberRole"></lightning-input-field>
+
+                                    </div>
+                                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                                        <lightning-input-field field-name="AccountAccessLevel"> </lightning-input-field>
+
+                                    </div>
+                                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                                        <lightning-input-field field-name="CaseAccessLevel"> </lightning-input-field>
+
+                                    </div>
+                                    <div class="slds-col slds-size_6-of-12 slds-p-horizontal_medium">
+                                        <lightning-input-field field-name="OpportunityAccessLevel">
+                                        </lightning-input-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-record-edit-form>
+                    </div>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+                        onclick={closeModelHandller}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={handleConfirmUpdate}>Update</button>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </template>
+</template>
