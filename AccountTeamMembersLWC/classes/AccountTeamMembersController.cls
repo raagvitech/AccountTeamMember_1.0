@@ -18,6 +18,8 @@ public class AccountTeamMembersController {
         AccountAccessLevel
       FROM AccountTeamMember
       WHERE AccountId = :recordId
+      // testing purpose
+
     ];
   }
   @AuraEnabled
@@ -118,7 +120,7 @@ public class AccountTeamMembersController {
       WHERE Id IN :selectedRecordsId
     ];
     delete listMember;
-    return 'sucess';
+    return 'su';
   }
 }
 
